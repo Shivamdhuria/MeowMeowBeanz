@@ -1,13 +1,21 @@
 package com.elixer.meowmeowbeanz;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+
+import com.facebook.login.widget.ProfilePictureView;
+
+import java.io.IOException;
+import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,15 +25,47 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        ImageView profile = (ImageView)findViewById(R.id.profile_image);
+        ProfilePictureView profilePictureView = (ProfilePictureView)findViewById(R.id.image);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+
+        Intent loginIntent = getIntent();
+        String id = loginIntent.getStringExtra("userid");
+    if(id!= null) {
+
+       /* try {
+          profile.setImageBitmap(bitmap);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+
+    }
+        Button button = (Button)findViewById(R.id.button2);
+        final Intent intent = new Intent(this,LoginActivity.class);
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onClick(View v) {
+
+                startActivity(intent);
             }
         });
+
+
+
+        try{
+         profilePictureView.setProfileId(id);
+        }catch (Exception er){}
+
+
+
+
+
+    }
+    public static Bitmap getFacebookProfilePicture(String userID) throws IOException {
+        URL imageURL = new URL("https://graph.facebook.com/" + userID + "/picture?type=large");
+        Bitmap bitmap = BitmapFactory.decodeStream(imageURL.openConnection().getInputStream());
+
+        return bitmap;
     }
 
     @Override
