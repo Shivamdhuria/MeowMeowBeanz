@@ -12,12 +12,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.facebook.AccessToken;
 import com.facebook.login.widget.ProfilePictureView;
 
 import java.io.IOException;
 import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
+
+    static protected AccessToken accessToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +61,15 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
+        Button buttonRateYourFriends = (Button)findViewById(R.id.button_rate);
+        buttonRateYourFriends.setTransformationMethod(null);
+       final Intent rateIntent = new Intent(this,RateYourFriends.class);
+        buttonRateYourFriends.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(rateIntent);
+            }
+        });
 
     }
     public static Bitmap getFacebookProfilePicture(String userID) throws IOException {

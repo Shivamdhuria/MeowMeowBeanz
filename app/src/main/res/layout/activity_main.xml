@@ -60,7 +60,21 @@
             app:civ_border_width="2dp"
             app:civ_border_color="#FF000000"
             android:layout_centerVertical="true"
-            android:layout_alignEnd="@+id/button2" />
+            android:layout_alignEnd="@+id/button2"
+            android:visibility="invisible" />
+
+        <Button
+            android:text="Rate Your Friends"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/button_rate"
+            android:layout_alignParentStart="true"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/cardview_light_background"
+            android:textSize="24sp"
+            android:typeface="sans"
+            android:textAllCaps="false"/>
 
     </RelativeLayout>
 

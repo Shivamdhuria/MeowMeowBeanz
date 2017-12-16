@@ -44,6 +44,10 @@
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".RateYourFriends"
+            android:label="@string/title_activity_rate_your_friends"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
